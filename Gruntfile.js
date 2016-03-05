@@ -1,5 +1,17 @@
+// run "grunt availabletasks" in the terminal to get a task list
+
 module.exports = function(grunt) {
   grunt.initConfig({
+    availabletasks: {
+        options: {
+            showTasks: ['user'], // only show the build tasks
+            descriptions: {
+                'default': 'Development build',
+                'production': 'Production build including minification',
+            }
+        },
+        tasks: {}
+    },
     less: {
       development: {
         files: {
@@ -52,7 +64,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-available-tasks');
 
-  grunt.registerTask('default', ['less', 'concat']);
-  grunt.registerTask('build', ['less', 'concat', 'uglify']);
+  var build = {
+    development: ['less:development', 'concat'],
+    production: ['less:production', 'concat', 'uglify']
+  };
+
+  grunt.registerTask('default', build.development);
+  grunt.registerTask('production', build.production);
 };
