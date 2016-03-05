@@ -1,1 +1,114 @@
-@font-face{font-family:'Trade Winds';font-style:normal;font-weight:400;src:local('Trade Winds'),local('TradeWinds'),url(../fonts/TradeWinds.woff) format('woff'),url(../fonts/TradeWinds.ttf) format('truetype')}*{margin:0;padding:0}html,body{height:100%;overflow:hidden}html{-webkit-font-smoothing:antialiased}body{background-color:#181818;background-image:-webkit-repeating-linear-gradient(0deg, transparent, transparent 35px, #000 35px, #000 70px);background-image:-moz-repeating-linear-gradient(0deg, transparent, transparent 35px, #000 35px, #000 70px);background-image:-ms-repeating-linear-gradient(0deg, transparent, transparent 35px, #000 35px, #000 70px);background-image:-o-repeating-linear-gradient(0deg, transparent, transparent 35px, #000 35px, #000 70px);text-align:center;color:#e6e6e6}a,a:hover,a:active,a:visited{color:#e6e6e6;cursor:pointer;text-decoration:none}a:hover{text-decoration:underline}header,footer{width:95%;height:10%;padding:0 2.5%;float:left;background:rgba(0,0,0,0.5)}#site-title{height:100%;width:100%;font-weight:normal;line-height:1em;font-family:'Trade Winds',cursive;white-space:nowrap}#stage{width:100%;height:80%;position:relative;float:left;border-top:1px solid #666;border-bottom:1px solid #666;cursor:pointer;box-sizing:border-box;-moz-box-sizing:border-box}#stage canvas{position:absolute;top:0;left:0;width:100%;-webkit-transform:translate3d(0, 0, 0)}footer{position:relative;text-align:center;font-family:'Trade Winds',cursive}@media only screen and (min-width:1900px){#site-title{font-size:4em}}@media only screen and (max-width:1900px){#site-title{font-size:3.5em}}@media only screen and (max-width:1200px){#site-title{font-size:3em}}@media only screen and (max-width:630px){#site-title{font-size:2.5em}}@media only screen and (max-width:520px){#site-title{font-size:2em}}@media only screen and (max-width:480px){#site-title span{display:none}#site-title:after{content:"WWAPD?";font-size:.8em}footer .copyright{display:none}}
+@font-face {
+  font-family: 'Trade Winds';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Trade Winds'), local('TradeWinds'), url(../fonts/TradeWinds.woff) format('woff'), url(../fonts/TradeWinds.ttf) format('truetype');
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+html {
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  background-color: #181818;
+  background-image: -webkit-repeating-linear-gradient(0deg, transparent, transparent 35px, #000000 35px, #000000 70px);
+  background-image: -moz-repeating-linear-gradient(0deg, transparent, transparent 35px, #000000 35px, #000000 70px);
+  background-image: -ms-repeating-linear-gradient(0deg, transparent, transparent 35px, #000000 35px, #000000 70px);
+  background-image: -o-repeating-linear-gradient(0deg, transparent, transparent 35px, #000000 35px, #000000 70px);
+  text-align: center;
+  color: #e6e6e6;
+}
+a,
+a:hover,
+a:active,
+a:visited {
+  color: #e6e6e6;
+  cursor: pointer;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+header,
+footer {
+  width: 95%;
+  height: 10%;
+  padding: 0 2.5%;
+  float: left;
+  background: rgba(0, 0, 0, 0.5);
+}
+#site-title {
+  height: 100%;
+  width: 100%;
+  font-weight: normal;
+  line-height: 1em;
+  font-family: 'Trade Winds', cursive;
+  white-space: nowrap;
+}
+#stage {
+  width: 100%;
+  height: 80%;
+  position: relative;
+  float: left;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+  cursor: pointer;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+#stage canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+footer {
+  position: relative;
+  text-align: center;
+  font-family: 'Trade Winds', cursive;
+}
+@media only screen and (min-width: 1900px) {
+  #site-title {
+    font-size: 4em;
+  }
+}
+@media only screen and (max-width: 1900px) {
+  #site-title {
+    font-size: 3.5em;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  #site-title {
+    font-size: 3em;
+  }
+}
+@media only screen and (max-width: 630px) {
+  #site-title {
+    font-size: 2.5em;
+  }
+}
+@media only screen and (max-width: 520px) {
+  #site-title {
+    font-size: 2em;
+  }
+}
+@media only screen and (max-width: 480px) {
+  #site-title span {
+    display: none;
+  }
+  #site-title:after {
+    content: "WWAPD?";
+    font-size: .8em;
+  }
+  footer .copyright {
+    display: none;
+  }
+}
