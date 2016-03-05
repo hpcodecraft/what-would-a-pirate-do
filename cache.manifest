@@ -1,8 +1,8 @@
 CACHE MANIFEST
-# v9
+# v12
 
 CACHE:
-css/wwapd.css
+css/wwapd-min.css
 fonts/TradeWinds.woff
 fonts/TradeWinds.ttf
 img/flame/Feuer_01_00000.png
@@ -34,7 +34,7 @@ img/favicon.png
 img/flamecorona.png
 img/pointer.png
 img/wheel.png
-js/min/wwapd-min.js
+js/wwapd-min.js
 index.html
 
 NETWORK:

@@ -9584,9 +9584,6 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
             clearTimeout(id);
         };
 }());
-// @codekit-prepend 'jquery-1.9.0.js'
-// @codekit-prepend 'requestAnimationFrame.js'
-
 $(function(){
 
   var actions = [
