@@ -42,7 +42,7 @@ module.exports = function(grunt) {
         src: [
           'js/jquery-1.9.0.js',
           'js/requestAnimationFrame.js',
-          //'js/proton-1.0.0.min.js',
+          'js/proton-1.0.0.js',
           'js/app.js'
         ],
         // the location of the resulting JS file

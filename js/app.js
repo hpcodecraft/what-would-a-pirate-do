@@ -1,3 +1,6 @@
+// @codekit-prepend 'jquery-1.9.0.js'
+// @codekit-prepend 'requestAnimationFrame.js'
+
 $(function(){
 
   var actions = [
@@ -23,6 +26,9 @@ $(function(){
       imgEyeGlow,
       imgFlameCorona,
       imgFlame,
+      proton,
+      renderer,
+      emitter,
       TO_RAD            = Math.PI/180,
       hit               = false,
       spinEnd           = 0,
@@ -72,9 +78,12 @@ $(function(){
     $('canvas').attr('height', stage.height() );
 
     if( initialized ) {
+      // redraw static canvases
       drawBackground();
       drawWheel();
       drawPointer();
+      //drawFlame();
+      //drawFlameCorona();
       if( hit ) drawResult();
     }
   }
@@ -108,6 +117,7 @@ $(function(){
     imgFlameCorona  = images[4];
     imgFlame        = images.slice(5);
     initialized = true;
+    createProton();
     resize();
     renderFrame();
   }
@@ -197,6 +207,8 @@ $(function(){
     c.drawImage( imgEyeGlow, x, y, w, h );
   }
 
+
+  /*
   function drawFlame() {
     var canvas  = document.getElementById('flame'),
         c       = canvas.getContext('2d'),
@@ -217,9 +229,59 @@ $(function(){
 
     if( frame%3 === 0 ) flameFrame++;
   }
+  */
+
+  function createProton() {
+    proton = new Proton;
+
+    var canvas  = document.getElementById('flame');
+    createImageEmitter(canvas);
+
+    renderer = new Proton.Renderer('webgl', proton, canvas);
+    renderer.blendFunc("SRC_ALPHA", "ONE");
+    renderer.start();
+  }
+
+  function createImageEmitter(canvas) {
+
+    var w = canvas.width,
+        h = canvas.height,
+        size = h/200,
+        radius = size*1.25;
+
+
+
+    emitter = new Proton.Emitter();
+    emitter.rate = new Proton.Rate(new Proton.Span(5, 10), new Proton.Span(.01, .015));
+    emitter.addInitialize(new Proton.Mass(1));
+    emitter.addInitialize(new Proton.Life(0.5, 1));
+    emitter.addInitialize(new Proton.ImageTarget(['img/particle-2.png'], size));
+    emitter.addInitialize(new Proton.Radius(radius));
+    emitter.addInitialize(new Proton.V(new Proton.Span(1, 3), 0, 'polar'));
+    emitter.addBehaviour(new Proton.Alpha(0.5, 0));
+
+    //emitter.addBehaviour(new Proton.Color('#4F1500', '#0029FF'));
+    emitter.addBehaviour(new Proton.Color('#ff4400', '#7627d7'));
+    emitter.addBehaviour(new Proton.Scale(1, 0));
+    emitter.addBehaviour(new Proton.CrossZone(new Proton.RectZone(0, h*0.23, w, h*0.28), 'dead'));
+    emitter.emit();
+    proton.addEmitter(emitter);
+  }
+
+  function drawFlame() {
+
+    var canvas  = document.getElementById('flame'),
+        x       = canvas.width*0.5,
+        y       = canvas.height*0.28;
+
+    emitter.p.x = x;
+    emitter.p.y = y;
+
+    proton.update();
+  }
 
   function drawFlameCorona() {
-    var canvas  = document.getElementById('flame'),
+    var canvas  = document.getElementById('flame-corona'),
         c       = canvas.getContext('2d'),
         r       = canvas.height*0.5,
         x       = canvas.width/2,
@@ -229,6 +291,7 @@ $(function(){
 
     y-= h*0.95;
 
+    c.clearRect(0,0,canvas.width,canvas.height);
     c.save();
     c.translate(x, y);
     c.rotate(coronaDeg * TO_RAD);
