@@ -133,6 +133,10 @@ $(function() {
   function init(images) {
     stage.click(spin);
     $(window).resize(resize).resize();
+    $('#webgl').change(function() {
+      var mode = $(this).prop('checked') ? 'webgl' : 'sprite';
+      setRenderMode(mode);
+    });
 
     imgBackground   = images[0];
     imgWheel        = images[1];
@@ -141,7 +145,10 @@ $(function() {
     imgFlameCorona  = images[4];
     imgFlame        = images.slice(5);
     initialized = true;
-    if(render_mode == RENDER_MODE_WEBGL) { createProton(); }
+    if(render_mode == RENDER_MODE_WEBGL) {
+      createProton();
+      $('#webgl').prop('checked', true);
+    }
     drawImageSprites();
     renderFrame();
   }
