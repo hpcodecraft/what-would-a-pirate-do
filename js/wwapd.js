@@ -13726,6 +13726,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 	}()); 
 var RENDER_MODE_WEBGL = 'webgl',
     RENDER_MODE_SPRITE = 'sprite',
+    animationFrameRequest,
     render_mode = RENDER_MODE_SPRITE;
 
 function hasWebGl() {
@@ -13790,14 +13791,11 @@ $(function() {
         'img/flame/Feuer_01_00021.png', 'img/flame/Feuer_01_00022.png'
       ];
 
-  imgpreload( images, init );
-
-  stage.click( spin );
-  $(window).resize( resize ).resize();
-
   function renderFrame() {
 
-    drawFlameWebGl();
+    if(render_mode == RENDER_MODE_WEBGL) { drawFlameWebGl(); }
+    else { drawFlameSprite(); }
+
     drawFlameCorona();
 
     if( spinning ) {
@@ -13810,8 +13808,7 @@ $(function() {
     }
 
     frame++;
-
-    requestAnimationFrame(renderFrame);
+    animationFrameRequest = requestAnimationFrame(renderFrame);
   }
 
   function resize() {
@@ -13821,13 +13818,14 @@ $(function() {
     $('canvas').attr('width', stage.width() );
     $('canvas').attr('height', stage.height() );
 
-    if( initialized ) {
-      // redraw static canvases
-      drawBackground();
-      drawWheel();
-      drawPointer();
-      if( hit ) drawResult();
-    }
+    if( initialized ) { drawImageSprites(); }
+  }
+
+  function drawImageSprites() {
+    drawBackground();
+    drawWheel();
+    drawPointer();
+    if( hit ) drawResult();
   }
 
   function spin() {
@@ -13851,7 +13849,10 @@ $(function() {
     hit = actions[hitNo];
   }
 
-  function init( images ) {
+  function init(images) {
+    stage.click(spin);
+    $(window).resize(resize).resize();
+
     imgBackground   = images[0];
     imgWheel        = images[1];
     imgPointer      = images[2];
@@ -13859,8 +13860,8 @@ $(function() {
     imgFlameCorona  = images[4];
     imgFlame        = images.slice(5);
     initialized = true;
-    createProton(); // webgl only
-    resize();
+    if(render_mode == RENDER_MODE_WEBGL) { createProton(); }
+    drawImageSprites();
     renderFrame();
   }
 
@@ -13949,7 +13950,7 @@ $(function() {
     c.drawImage( imgEyeGlow, x, y, w, h );
   }
 
-  // this function draws the classic image sprite flame
+  // draws the image sprite flame
   function drawFlameSprite() {
     var canvas  = document.getElementById('flame'),
         c       = canvas.getContext('2d'),
@@ -13973,7 +13974,7 @@ $(function() {
 
   // webgl init
   function createProton() {
-    proton = new Proton;
+    proton = new Proton();
 
     var canvas  = document.getElementById('flame');
     createImageEmitter(canvas);
@@ -14010,7 +14011,7 @@ $(function() {
     proton.addEmitter(emitter);
   }
 
-  // this function starts drawing the webgl flame
+  // draws the webgl flame
   function drawFlameWebGl() {
 
     var canvas  = document.getElementById('flame'),
@@ -14135,4 +14136,7 @@ $(function() {
       images[i].src = imgs[i];
     }
   }
+
+  // start the app
+  imgpreload(images, init);
 });
