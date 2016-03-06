@@ -13729,6 +13729,11 @@ var RENDER_MODE_WEBGL = 'webgl',
     animationFrameRequest,
     render_mode = RENDER_MODE_SPRITE;
 
+function setRenderMode(mode) {
+  localStorage.wwapd_render_mode = mode;
+  location.reload();
+}
+
 function hasWebGl() {
   var gl,
       canvas = document.createElement('canvas');
@@ -13747,6 +13752,8 @@ function hasWebGl() {
 $(function() {
 
   if(hasWebGl()) render_mode = RENDER_MODE_WEBGL;
+  if(localStorage.wwapd_render_mode) render_mode = localStorage.wwapd_render_mode;
+  else localStorage.wwapd_render_mode = render_mode;
 
   var actions = [
     'loot and pillage',
