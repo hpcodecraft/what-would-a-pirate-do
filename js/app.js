@@ -1,7 +1,25 @@
-// @codekit-prepend 'jquery-1.9.0.js'
-// @codekit-prepend 'requestAnimationFrame.js'
+var RENDER_MODE_WEBGL = 'webgl',
+    RENDER_MODE_SPRITE = 'sprite',
+    render_mode = RENDER_MODE_SPRITE;
 
-$(function(){
+function hasWebGl() {
+  var gl,
+      canvas = document.createElement('canvas');
+
+  try { gl = canvas.getContext("webgl"); }
+  catch (x) { gl = null; }
+
+  if(gl === null) {
+    try { gl = canvas.getContext("experimental-webgl"); }
+    catch (x) { gl = null; }
+  }
+
+  return gl === null ? false : true;
+}
+
+$(function() {
+
+  if(hasWebGl()) render_mode = RENDER_MODE_WEBGL;
 
   var actions = [
     'loot and pillage',
@@ -26,9 +44,9 @@ $(function(){
       imgEyeGlow,
       imgFlameCorona,
       imgFlame,
-      proton,
-      renderer,
-      emitter,
+      proton, // webgl only
+      renderer, // webgl only
+      emitter, // webgl only
       TO_RAD            = Math.PI/180,
       hit               = false,
       spinEnd           = 0,
@@ -53,7 +71,7 @@ $(function(){
 
   function renderFrame() {
 
-    drawFlame();
+    drawFlameWebGl();
     drawFlameCorona();
 
     if( spinning ) {
@@ -82,8 +100,6 @@ $(function(){
       drawBackground();
       drawWheel();
       drawPointer();
-      //drawFlame();
-      //drawFlameCorona();
       if( hit ) drawResult();
     }
   }
@@ -117,7 +133,7 @@ $(function(){
     imgFlameCorona  = images[4];
     imgFlame        = images.slice(5);
     initialized = true;
-    createProton();
+    createProton(); // webgl only
     resize();
     renderFrame();
   }
@@ -207,9 +223,8 @@ $(function(){
     c.drawImage( imgEyeGlow, x, y, w, h );
   }
 
-
-  /*
-  function drawFlame() {
+  // this function draws the classic image sprite flame
+  function drawFlameSprite() {
     var canvas  = document.getElementById('flame'),
         c       = canvas.getContext('2d'),
         r       = canvas.height*0.9,
@@ -229,8 +244,8 @@ $(function(){
 
     if( frame%3 === 0 ) flameFrame++;
   }
-  */
 
+  // webgl init
   function createProton() {
     proton = new Proton;
 
@@ -242,6 +257,7 @@ $(function(){
     renderer.start();
   }
 
+  // webgl particle emitter init
   function createImageEmitter(canvas) {
 
     var w = canvas.width,
@@ -268,7 +284,8 @@ $(function(){
     proton.addEmitter(emitter);
   }
 
-  function drawFlame() {
+  // this function starts drawing the webgl flame
+  function drawFlameWebGl() {
 
     var canvas  = document.getElementById('flame'),
         x       = canvas.width*0.5,
