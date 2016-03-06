@@ -13756,14 +13756,14 @@ $(function() {
   else localStorage.wwapd_render_mode = render_mode;
 
   var actions = [
-    'loot and pillage',
     'swab the deck',
     'bury the booty',
     'guzzle grog',
     'plunder a sloop',
     'keelhaul a scurvy dog',
     'sing a chantey',
-    'obtain a parrot'
+    'obtain a parrot',
+    'loot and pillage',
   ];
 
   var initialized       = false,
