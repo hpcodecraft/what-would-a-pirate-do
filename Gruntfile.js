@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         },
         files: {
           // target.css file: source.less file
-          "css/wwapd-min.css": "css/wwapd.less"
+          "docs/wwapd-min.css": "css/wwapd.less"
         }
       }
     },
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
       },
       build: {
         src: 'js/wwapd.js',
-        dest: 'js/wwapd-min.js'
+        dest: 'docs/wwapd-min.js'
       }
     }
   });
