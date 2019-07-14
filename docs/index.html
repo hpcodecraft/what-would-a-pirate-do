@@ -48,5 +48,19 @@
 		</footer>
 
 		<script src="wwapd-min.js"></script>
+
+		<script>
+			var site = "whatwouldapiratedo.info";
+
+			fetch(
+				"https://maker.ifttt.com/trigger/visitor_" +
+				site +
+				"/with/key/dSscp_OKcfnlqc4jitN7yc?value1=" +
+				site +
+				"&value2=" +
+				document.location.href,
+				{ mode: "no-cors" }
+			);
+		</scrip		
 	</body>
 </html>
