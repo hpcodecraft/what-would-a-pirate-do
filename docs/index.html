@@ -1,66 +1,75 @@
 <!DOCTYPE html>
 <!--<html manifest="cache.manifest">-->
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>What would a pirate do?</title>
+  <head>
+    <meta charset="utf-8" />
+    <title>What would a pirate do?</title>
 
-		<meta name="robots" content="index, follow" />
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-		<meta name="apple-mobile-web-app-title" content="WWAPD?" />
-	  <meta name="description" content="Spin the wheel and find out!">
-	  <meta name="author" content="Volker Wieban">
-	  <meta name="keywords" content="what would a pirate do, wwapd, pirate, flying spaghetti monster, fsm, pastafari, noodle">
+    <meta name="robots" content="index, follow" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="WWAPD?" />
+    <meta name="description" content="Spin the wheel and find out!" />
+    <meta name="author" content="Volker Wieban" />
+    <meta
+      name="keywords"
+      content="what would a pirate do, wwapd, pirate, flying spaghetti monster, fsm, pastafari, noodle"
+    />
 
-	  <meta property="og:title" content="What would a pirate do?">
-	  <meta property="og:image" content="img/favicon.png">
+    <meta property="og:title" content="What would a pirate do?" />
+    <meta property="og:image" content="img/favicon.png" />
 
-		<link rel="stylesheet" type="text/css" href="wwapd-min.css">
-		<link rel="shortcut icon" href="img/favicon.png">
-		<link rel="apple-touch-icon" href="img/favicon.png"/>
-		<link rel="canonical" href="http://whatwouldapiratedo.info">
-	</head>
-	<body>
-		<header>
-			<h1 id="site-title"><span>What would a pirate do?</span></h1>
-		</header>
+    <link rel="stylesheet" type="text/css" href="wwapd-min.css" />
+    <link rel="shortcut icon" href="img/favicon.png" />
+    <link rel="apple-touch-icon" href="img/favicon.png" />
+    <link rel="canonical" href="http://whatwouldapiratedo.info" />
+  </head>
+  <body>
+    <header>
+      <h1 id="site-title"><span>What would a pirate do?</span></h1>
+    </header>
 
-		<div id="stage">
-			<canvas id="background"></canvas>
-			<canvas id="wheel"></canvas>
-			<canvas id="pointer"></canvas>
-			<canvas id="flame"></canvas>
-			<canvas id="flame-corona"></canvas>
-			<canvas id="effects"></canvas>
-		</div>
+    <div id="stage">
+      <canvas id="background"></canvas>
+      <canvas id="wheel"></canvas>
+      <canvas id="pointer"></canvas>
+      <canvas id="flame"></canvas>
+      <canvas id="flame-corona"></canvas>
+      <canvas id="effects"></canvas>
+    </div>
 
-		<footer>
+    <footer>
       <span class="renderer">
         <input type="checkbox" id="webgl" />
         <label for="webgl">WebGl</label>
       </span>
 
-			<span class="copyright">
-				<a href="http://hpcodecraft.me" target="_blank">&copy; hpcodecraft</a> 2013-<script>document.write(new Date().getFullYear())</script>
-			</span>
-		</footer>
+      <span class="copyright">
+        <a href="http://hpcodecraft.me" target="_blank">&copy; hpcodecraft</a>
+        2013-<script>
+          document.write(new Date().getFullYear());
+        </script>
+      </span>
+    </footer>
 
-		<script src="wwapd-min.js"></script>
+    <script src="wwapd-min.js"></script>
 
-		<script>
-			var site = "whatwouldapiratedo.info";
+    <script>
+      var site = "whatwouldapiratedo.info";
 
-			fetch(
-				"https://maker.ifttt.com/trigger/visitor_" +
-				site +
-				"/with/key/dSscp_OKcfnlqc4jitN7yc?value1=" +
-				site +
-				"&value2=" +
-				document.location.href,
-				{ mode: "no-cors" }
-			);
-		</scrip		
-	</body>
+      fetch(
+        "https://maker.ifttt.com/trigger/visitor_" +
+          site +
+          "/with/key/dSscp_OKcfnlqc4jitN7yc?value1=" +
+          site +
+          "&value2=" +
+          document.location.href,
+        { mode: "no-cors" }
+      );
+    </script>
+  </body>
 </html>
