@@ -61,6 +61,8 @@ module.exports = function(grunt) {
     }
   });
 
+  // TODO add copy job for index.html file
+
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-uglify');
